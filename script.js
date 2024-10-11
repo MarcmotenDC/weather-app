@@ -28,9 +28,8 @@ async function fetchWeatherData(location) {
 
 // Function: Display Weather Data
 function displayWeatherData(data) {
-    // TODO: Update the DOM with weather data
-    // Hint: Use document.getElementById() to select the element and update its innerHTML
-    
+    const weatherDisplay = document.getElementById(weatherData)
+    weatherDisplay.innerHTML = data
 
     
     
