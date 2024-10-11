@@ -28,8 +28,17 @@ async function fetchWeatherData(location) {
 
 // Function: Display Weather Data
 function displayWeatherData(data) {
-    const weatherDisplay = document.getElementById(weatherData)
-    weatherDisplay.innerHTML = data
+    const weatherDisplay = document.getElementById('weatherData')
+    console.log(data)
+    weatherDisplay.innerHTML = `
+<div>
+    <ul>
+        <li>City: <span id="cityName">${data.nearest_area[0].areaName[0].value}</span></li>
+        <li>Temperature: <span id="temp"></span></li>
+        <li>Feels Like: <span id="feelsLike"></span></li>
+        <li>The Sky is <span id="weatherDesc"></span></li>
+    </ul>
+</div>`
 
     
     
@@ -38,14 +47,13 @@ function displayWeatherData(data) {
 // Function: Get Weather
 async function getWeather(location) {
     try {
-        // TODO: Fetch weather data and display it
-        // Hint: Call fetchWeatherData() and displayWeatherData()
-        
+        const weatherData = await fetchWeatherData(location)
+        displayWeatherData(weatherData)
         
     } catch (error) {
-        // TODO: Display an error message in the DOM
-        // Hint: Use document.getElementById() to select the element and update its innerHTML
-
+        console.error("Failed to display weather: " + error)
+        const weatherDisplay = document.getElementById('weatherData')
+        weatherDisplay.innerHTML += error 
     }
 }
 
