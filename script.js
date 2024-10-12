@@ -34,9 +34,9 @@ function displayWeatherData(data) {
 <div>
     <ul>
         <li>City: <span id="cityName">${data.nearest_area[0].areaName[0].value}</span></li>
-        <li>Temperature: <span id="temp"></span></li>
-        <li>Feels Like: <span id="feelsLike"></span></li>
-        <li>The Sky is <span id="weatherDesc"></span></li>
+        <li>Temperature: <span id="temp">${data.current_condition[0].temp_F}</span></li>
+        <li>Feels Like: <span id="feelsLike">${data.current_condition[0].FeelsLikeF}</span></li>
+        <li>The Sky is <span id="weatherDesc">${data.current_condition[0].weatherDesc[0].value}</span></li>
     </ul>
 </div>`
 
@@ -53,7 +53,7 @@ async function getWeather(location) {
     } catch (error) {
         console.error("Failed to display weather: " + error)
         const weatherDisplay = document.getElementById('weatherData')
-        weatherDisplay.innerHTML += error 
+        weatherDisplay.innerHTML = error 
     }
 }
 
